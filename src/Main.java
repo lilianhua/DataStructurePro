@@ -1,42 +1,22 @@
 public class Main {
 
     public static void main(String[] args) {
-        Array data = new Array(20);
+        Array data = new Array();
         for (int i = 0; i < 10; i++) {
             data.add(i, i + 1);
         }
+        System.out.println("new");
         System.out.println(data);
 
-        System.out.println("------------add---------------");
-        data.addFirst(100);
-        data.addLast(222);
+        data.addLast(100);
+        data.addLast(102);
+        System.out.println("add");
         System.out.println(data);
 
-        System.out.println("---------get------------------");
-        System.out.println(data.get(0));
-
-        System.out.println("-----------set----------------");
-        data.set(3,434);
-        System.out.println(data);
-
-        System.out.println("----------removeFirst-----------------");
         data.removeFirst();
+        data.removeFirst();
+        data.removeFirst();
+        System.out.println("remove");
         System.out.println(data);
-
-        System.out.println("----------removeLast-----------------");
-        data.removeLast();
-        System.out.println(data);
-
-        System.out.println("----------remove-----------------");
-        data.remove(3);
-        System.out.println(data);
-
-        System.out.println("----------find-----------------");
-        int index = data.find(5);
-        System.out.println(index);
-
-        System.out.println("----------contains-----------------");
-        boolean isHave = data.contains(5);
-        System.out.println(isHave);
     }
 }
