@@ -68,6 +68,57 @@ public class Array {
         data[index] = e;
     }
 
+    //contains
+    public boolean contains(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //find
+    public int find(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    //removeFirst
+    public int removeFirst() {
+        return remove(0);
+    }
+
+    //removeLast
+    public int removeLast() {
+        return remove(size - 1);
+    }
+
+    //removeElement
+    public void removeElement(int e) {
+        int index = find(e);
+        if (index != -1) {
+            remove(index);
+        }
+    }
+
+    //remove
+    public int remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("remove fail.index illegal.");
+        }
+        int ret = data[index];
+        for (int i = index; i < size; i++) {
+            data[i] = data[i + 1];
+        }
+        size--;
+        return ret;
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
