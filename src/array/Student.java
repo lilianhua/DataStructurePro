@@ -1,4 +1,4 @@
-import groovy.transform.ToString;
+package array;
 
 public class Student {
 
@@ -12,7 +12,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return String.format("Student(name:%s,score:%d) ", name, score);
+        return String.format("array.Student(name:%s,score:%d) ", name, score);
     }
 
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package array;
+
 /**
  * 自定义数组
  */
@@ -29,7 +31,7 @@ public class Array<E> {
     public void addLast(E e) {
         add(size, e);
 //        if (size == data.length) {
-//            throw new IllegalArgumentException("AddLast fail.Array is full.");
+//            throw new IllegalArgumentException("AddLast fail.array.Array is full.");
 //        }
 //        data[size] = e;
 //        size++;
@@ -68,6 +70,14 @@ public class Array<E> {
             throw new IllegalArgumentException("Get fail.index requires index<size.");
         }
         return data[index];
+    }
+
+    public E getFirst() {
+        return get(0);
+    }
+
+    public E getLast() {
+        return get(size - 1);
     }
 
     public void set(int index, E e) {
@@ -126,7 +136,7 @@ public class Array<E> {
         }
         size--;
         data[size] = null;
-        if (size == data.length / 2) {
+        if (size == data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
         }
         return ret;
