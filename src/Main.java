@@ -1,14 +1,82 @@
 import array.Array;
+import list.LinkList;
 import queue.ArrayQueue;
 import queue.LoopQueue;
+import queue.Queue;
 import stack.ArrayStack;
 
+import java.util.ArrayDeque;
+import java.util.Random;
 import java.util.Stack;
 
 public class Main {
 
     public static void main(String[] args) {
-        testLoopQueue();
+        testLinkList();
+    }
+
+    private static void testLinkList() {
+        LinkList<Integer> linkList = new LinkList<>();
+        for (int i = 0; i < 5; i++) {
+            linkList.addFirst(i);
+            System.out.println(linkList);
+        }
+        linkList.add(2, 777);
+        System.out.println(linkList);
+
+        linkList.remove(2);
+        System.out.println(linkList);
+
+        linkList.removeFirst();
+        System.out.println(linkList);
+
+        linkList.removeLast();
+        System.out.println(linkList);
+    }
+
+    /**
+     * test arrayQueue and loopQueue use time
+     */
+    private static void testQueueTime() {
+        int optCount = 100000;
+        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+        double time1 = queueTime(arrayQueue, optCount);
+        System.out.println("arrayQueue time:" + time1);
+
+        LoopQueue<Integer> loopQueue = new LoopQueue<>();
+        double time2 = queueTime(loopQueue, optCount);
+        System.out.println("loopQueue time:" + time2);
+
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        double time3 = arrayListTime(deque, optCount);
+        System.out.println("ArrayDeque time:" + time3);
+    }
+
+    private static double arrayListTime(ArrayDeque<Integer> deque, int optCount) {
+        long startTime = System.nanoTime();
+        Random random = new Random();
+        for (int i = 0; i < optCount; i++) {
+            deque.addLast(random.nextInt(Integer.MAX_VALUE));
+        }
+
+        for (int i = 0; i < optCount; i++) {
+            deque.removeFirst();
+        }
+        long endTime = System.nanoTime();
+        return (endTime - startTime) / 1000000000.0;
+    }
+
+    private static double queueTime(Queue<Integer> q, int optCount) {
+        long startTime = System.nanoTime();
+        Random random = new Random();
+        for (int i = 0; i < optCount; i++) {
+            q.enqueue(random.nextInt(Integer.MAX_VALUE));
+        }
+        for (int i = 0; i < optCount; i++) {
+            q.dequeue();
+        }
+        long endTime = System.nanoTime();
+        return (endTime - startTime) / 1000000000.0;
     }
 
     private static void testLoopQueue() {
@@ -65,6 +133,12 @@ public class Main {
         System.out.println(data);
     }
 
+    /**
+     * leetcode 20
+     *
+     * @param s
+     * @return
+     */
     public static boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
