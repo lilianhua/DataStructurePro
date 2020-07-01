@@ -1,9 +1,11 @@
 import array.Array;
 import list.LinkList;
 import queue.ArrayQueue;
+import queue.LinklistQueue;
 import queue.LoopQueue;
 import queue.Queue;
 import stack.ArrayStack;
+import stack.LinklistStack;
 
 import java.util.ArrayDeque;
 import java.util.Random;
@@ -12,7 +14,7 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) {
-        testLinkList();
+        testQueueTime();
     }
 
     private static void testLinkList() {
@@ -38,18 +40,18 @@ public class Main {
      * test arrayQueue and loopQueue use time
      */
     private static void testQueueTime() {
-        int optCount = 100000;
-        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
-        double time1 = queueTime(arrayQueue, optCount);
-        System.out.println("arrayQueue time:" + time1);
+        int optCount = 1000000;
+//        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+//        double time1 = queueTime(arrayQueue, optCount);
+//        System.out.println("arrayQueue time:" + time1);
 
         LoopQueue<Integer> loopQueue = new LoopQueue<>();
         double time2 = queueTime(loopQueue, optCount);
         System.out.println("loopQueue time:" + time2);
 
-        ArrayDeque<Integer> deque = new ArrayDeque<>();
-        double time3 = arrayListTime(deque, optCount);
-        System.out.println("ArrayDeque time:" + time3);
+        LinklistQueue<Integer> linklistQueue = new LinklistQueue<>();
+        double time3 = queueTime(linklistQueue, optCount);
+        System.out.println("linklistQueue time:" + time3);
     }
 
     private static double arrayListTime(ArrayDeque<Integer> deque, int optCount) {
@@ -79,6 +81,18 @@ public class Main {
         return (endTime - startTime) / 1000000000.0;
     }
 
+    private static void testLinklistQueue() {
+        LinklistQueue<Integer> queue = new LinklistQueue<>();
+        for (int i = 0; i < 10; i++) {
+            queue.enqueue(i);
+            System.out.println(queue);
+            if (i % 3 == 2) {
+                queue.dequeue();
+                System.out.println("dequeue:" + queue);
+            }
+        }
+    }
+
     private static void testLoopQueue() {
         LoopQueue<Integer> queue = new LoopQueue<>();
         for (int i = 0; i < 10; i++) {
@@ -101,6 +115,16 @@ public class Main {
                 System.out.println("dequeue:" + queue);
             }
         }
+    }
+
+    private static void testLinklistStack() {
+        LinklistStack<Integer> stack = new LinklistStack<>();
+        for (int i = 0; i < 5; i++) {
+            stack.push(i);
+            System.out.println(stack);
+        }
+        stack.pop();
+        System.out.println(stack);
     }
 
     private static void testStack() {
