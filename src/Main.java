@@ -14,7 +14,20 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) {
-        testQueueTime();
+        int[] arr = {1, 2, 3, 4, 5};
+        int sum = sum(arr);
+        System.out.println(sum);
+    }
+
+    public static int sum(int[] arr) {
+        return sum(arr, 0);
+    }
+
+    private static int sum(int[] arr, int index) {
+        if (index == arr.length) {
+            return 0;
+        }
+        return arr[index] + sum(arr, index + 1);
     }
 
     private static void testLinkList() {
